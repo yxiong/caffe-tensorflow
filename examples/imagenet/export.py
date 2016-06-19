@@ -18,8 +18,10 @@ import models
 def export(npy_path, pb_path):
     print "Creating the network ..."
     spec = models.get_data_spec(model_class=models.GoogleNet)
-    input_node = tf.placeholder(tf.float32,
-                                shape=(None, spec.crop_size, spec.crop_size, spec.channels))
+    input_node = tf.placeholder(
+        tf.float32,
+        name = "input",
+        shape=(None, spec.crop_size, spec.crop_size, spec.channels))
     net = models.GoogleNet({'data': input_node})
 
     with tf.Session() as sess:
